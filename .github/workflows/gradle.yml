@@ -7,6 +7,7 @@ jobs:
       matrix:
         java: [17]
         os: [windows-latest]
+        
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
@@ -27,10 +28,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fabric
-          path: fabric/build/libs/candycraftce-[0-9]+.[0-9]+.[0-9]+.jar
+          path: fabric/build/libs/candycraftce-[[:digit:]\.]+jar
+      
       - name: upload forge
         uses: actions/upload-artifact@v3
         with:
           name: forge
-          path: forge/build/libs/candycraft-[0-9]+.[0-9]+.[0-9]+.jar
+          path: forge/build/libs/candycraftce-[[:digit:]\.]+jar
           
