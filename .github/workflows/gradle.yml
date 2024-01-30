@@ -5,16 +5,8 @@ jobs:
   build:
     strategy:
       matrix:
-        # Use these Java versions
-        # java: [
-        #   17,    # Current Java LTS & minimum supported by Minecraft
-        #   21,    # Current Java LTS
-        # ]
         java: [17]
-        # and run on both Linux and Windows
-        # os: [ubuntu-22.04, windows-2022]
         os: [windows-latest]
-        jar_name: ["candycraft-[0-9]+.[0-9]+.[0-9]+.jar"]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
@@ -27,7 +19,7 @@ jobs:
           distribution: 'microsoft'
           
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: build
           
@@ -35,10 +27,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fabric
-          path: fabric/build/libs/${{matrix.jarname}}
+          path: fabric/build/libs/candycraft-[0-9]+.[0-9]+.[0-9]+.jar
       - name: upload forge
         uses: actions/upload-artifact@v3
         with:
           name: forge
-          path: forge/build/libs/${{matrix.jarname}}
+          path: forge/build/libs/candycraft-[0-9]+.[0-9]+.[0-9]+.jar
           
