@@ -25,7 +25,7 @@ jobs:
           arguments: build
           
       - name: Draw Jars
-      - run: ./gradlew drawJars
+        run: ./gradlew drawJars
       
       - name: upload forge
         uses: actions/upload-artifact@v3
